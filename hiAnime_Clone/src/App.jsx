@@ -1,14 +1,14 @@
-import { useState } from 'react'
-import './index.css'
+import React from "react";
+import Slider from './Components/Slider/Slider'// Import Slider component
 
-function App() {
-  const [count, setCount] = useState(0)
-
+const App = () => {
   return (
-    <>
-    <div className="font-bold text-center " >Hello World</div>
-    </>
-  )
-}
+    <div className="App">
+      {/* Just use the Slider component */}
+      <Slider />
+    </div>
+  );
+};
 
 export default App
+
