@@ -1,6 +1,7 @@
+
+
 import React from 'react';
 import { MdSubtitles } from "react-icons/md";
-import { GiMicrophone } from "react-icons/gi";
 import { FaMicrophone } from 'react-icons/fa';
 
 const Availability = ({ subtitles, episodes, dub }) => {
