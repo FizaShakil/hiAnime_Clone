@@ -10,8 +10,8 @@ const NewAnime = () => {
       type: 'ONA . 22m',
       image: '/imagesm/Lycorise_recoil.jpg',
       subtitles: true,
-      microphone: true,
-      episodes: 1,
+      microphone: false,
+      episodes: 22,
       ageRestricted: true,
     },
     {
@@ -21,7 +21,7 @@ const NewAnime = () => {
       image: '/imagesm/araiguma.jpg',
       subtitles: true,
       microphone: true,
-      episodes: 1,
+      episodes: 0,
       ageRestricted: true,
     },
     {
@@ -90,55 +90,60 @@ const NewAnime = () => {
       <div className="max-w-screen-2xl mx-auto flex flex-col lg:flex-row gap-10">
         {/* Anime Grid Section */}
         <div className="flex-1">
-          <h1 className="text-1xl sm:text-2xl font-bold mb-6 text-white">New On HiAnime</h1>
+          <h1 className="text-1xl sm:text-2xl font-bold mb-6 text-pink-300">New On HiAnime</h1>
           <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
             {animeList.map((anime) => (
-              <div
-                key={anime.id}
-                className="bg-[#201F31] overflow-hidden transition duration-300 "
-              >
-                <div className="relative aspect-[3/4]">
-                  <img
-                    src={anime.image}
-                    alt={anime.title}
-                    className="absolute top-0 left-0 w-full h-full object-cover "
-                  />
+              <div key={anime.id} className="bg-[#201F31] overflow-hidden transition duration-300">
 
-{anime.ageRestricted && (
-    <div className="absolute top-2 bg-red-600 text-white text-xs ml-4 px-2 py-1 rounded font-bold z-10 shadow-md">
-      18+
+              {/* Image Section */}
+              <div className="relative aspect-[3/4]">
+                <img
+                  src={anime.image}
+                  alt={anime.title}
+                  className="absolute top-0 left-0 w-full h-full object-cover"
+                />
+            
+                {/* 18+ Tag */}
+                {anime.ageRestricted && (
+                  <div className="absolute top-2 bg-red-600 text-white text-xs ml-4 px-2 py-1 rounded font-bold z-10 shadow-md">
+                    18+
+                  </div>
+                )}
+            
+             
+    {/* Icons & Episode Count */}
+    <div className="absolute left-2 z-10 flex gap-2 bottom-2 md:mt-64 md:bottom-auto">
+  {anime.subtitles && (
+    <div className="z-10 bg-green-300 px-2 py-1 rounded">
+      <MdSubtitles className="text-gray-900" size={12} />
     </div>
   )}
+  {anime.microphone && (
+    <div className="z-10 bg-blue-300 px-2 py-1 rounded">
+      <FaMicrophone className="text-gray-900" size={12} />
+    </div>
+  )}
+  {anime.episodes > 0 && (
+    <div className="z-10 bg-white bg-opacity-30 text-white text-xs px-1 rounded">
+      Ep {anime.episodes}
+    </div>
+  )}
+</div>
 
-                  <div className="absolute top-2 left-2 z-10 flex gap-2">
-                       {anime.subtitles && (
-                         <div className=" z-10 bg-green-300 px-2 py-1 mt-64 rounded">
-                           <MdSubtitles className="text-gray-900 " size={12} />
-                          </div>
-                          )}
-                        {anime.microphone && (
-                          <div className="z-10 bg-blue-300 px-2 py-1 mt-64 rounded">
-                             <FaMicrophone className="text-gray-900" size={12} />
-                          </div>
-                            )}
-                       {anime.episodes > 0 && (
-                           <div className="z-10 bg-white bg-opacity-30 text-white text-xs mt-64 px-1 left-0  rounded">
-                               Ep {anime.episodes}
-                      </div>
-                      )}
-                </div>
-
+            
+                {/* Shadow on Image */}
                 <div className="absolute bottom-0 h-[40%] w-full bg-gradient-to-t from-[#201F31] via-[#201F31]/10 to-transparent"></div>
-                <div className="p-3 space-y-2">
-                  <h3 className="text-sm sm:text-base font-semibold line-clamp-2 leading-snug">
-                    {anime.title}
-                  </h3>
-                  {anime.type && (
-                    <p className="text-sm text-gray-400">{anime.type}</p>
-                  )}
-                </div>
-                </div>
               </div>
+            
+              {/* 🟢 Text Comes After Image (Outside Relative Block) */}
+              <div className="p-1">
+                <h3 className="text-sm sm:text-base font-semibold text-white">
+                  {anime.title}
+                </h3>
+                <p className=" pt-3 text-sm text-gray-400">{anime.type}</p>
+              </div>
+            </div>
+            
             ))}
           </div>
         </div>
